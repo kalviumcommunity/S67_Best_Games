@@ -1,26 +1,15 @@
-# Title : List of a few great games I played this year
 
-Overview : This project is a web-based showcase of the best games I’ve played in 2024. The goal is to create a platform where I can share experiences, and reviews of games, complete with visuals, summaries, and gameplay highlights. The platform aims to inspire gamers, facilitate discussions, and document my journey through the year.
+In this project I will be building an E-Commerce application from scratch using the MERN Stack.
 
-Key Features :
-Game List Display
-Detailed Game Description
-Filtering and Sorting
-Interactive Elements
-Dark Mode
+After completing this project I will be able to :
+    - Understand the overall structure of a MERN project.
+    - Learn the foundational steps of setting up a new project.
+    - Gain clarity on the functionalities of an e-commerce application.
+    - Prepare for upcoming milestones by setting up the project repository.
 
+Concpets covered in this project are :
+    - Overview of the MERN stack
+    - REST API Structure and Endpoints
+    - Basics of database schema design
+    - Role of authentication in web applications
 
-Tech Stack :
-
-    Frontend :
-    Framework : React.js
-    Styling : CSS
-    State Management : Redux
-    Backend :
-
-    Framework : Node.js with Express.js
-    Database : MongoDB
-
-    Additional Tools :
-    Version Control : Git and Github
-    Design : Figma
