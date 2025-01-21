@@ -24,3 +24,7 @@ Tech Stack :
     Additional Tools :
     Version Control : Git and Github
     Design : Figma
+
+21.01.25
+
+- Initialized the project and created the package.json file.
