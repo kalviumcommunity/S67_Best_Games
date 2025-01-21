@@ -28,3 +28,4 @@ Tech Stack :
     21.01.25
 
     Initialized the project and created the package.json file.
+
