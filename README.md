@@ -29,3 +29,4 @@ Tech Stack :
 
     Initialized the project and created the package.json file.
 
+Added server.js file
