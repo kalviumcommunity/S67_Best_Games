@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/kalviumcommunity/S67_Best_Games/issues"
   },
-  "homepage": "https://github.com/kalviumcommunity/S67_Best_Games#readme"
+  "homepage": "https://github.com/kalviumcommunity/S67_Best_Games#readme",
+  "dependencies": {
+    "express": "^4.21.2"
+  }
 }
