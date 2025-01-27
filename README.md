@@ -30,3 +30,7 @@ Tech Stack :
     Initialized the project and created the package.json file.
 
 Added server.js file
+
+Deployed the project on render.com
+
+here's the link : https://s67-best-games.onrender.com/ping
