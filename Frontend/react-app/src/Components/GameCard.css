@@ -8,6 +8,8 @@
   margin: 15px;
   background-color: #fff;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  color: #000;
+  padding: 10px;
 }
 
 .game-card:hover {
@@ -46,6 +48,8 @@
 
 .game-card-content {
   padding: 16px;
+  max-width: 100px;
+
 }
 
 .game-card-title {
