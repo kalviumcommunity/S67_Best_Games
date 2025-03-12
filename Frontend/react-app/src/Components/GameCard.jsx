@@ -1,56 +1,32 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import './GameCard.css';
+import { Link } from 'react-router-dom';
 
-const GameCard = ({ 
-  title, 
-  genre,
-  rating, 
-  imageUrl, 
-  description,
-  price,
-  onReviewClick 
-}) => {
+const GameCard = ({ game, onDelete }) => {
+  const handleDelete = () => {
+    fetch(`http://localhost:3000/api/games/${game._id}`, {
+      method: 'DELETE',
+    })
+      .then(response => {
+        if (response.ok) {
+          onDelete(game._id);
+        } else {
+          console.error('Delete failed');
+        }
+      })
+      .catch(err => console.error(err));
+  };
+
   return (
     <div className="game-card">
-      <div className="game-card-image">
-        <img src={imageUrl || "https://placehold.co/300x200"} alt={title} />
-        {rating && <div className="game-card-rating">{rating}</div>}
-      </div>
-      
-      <div className="game-card-content">
-        <h2 className="game-card-title">{title}</h2>
-        <div className="game-card-meta">
-          {genre && <span className="game-card-genre">{genre}</span>}
-          {price && <span className="game-card-price">{price}</span>}
-        </div>
-        
-        {description && <p className="game-card-description">{description}</p>}
-        
-        <button 
-          className="game-card-button" 
-          onClick={onReviewClick}
-        >
-          Read Full Review
-        </button>
-      </div>
+      <img src={game.image} alt={game.name} className="game-image" />
+      <h3>{game.title}</h3>
+      <p>Genre: {game.genre}</p>
+      <p>Platform: {game.platform}</p>
+      <p>Rating: {game.rating} / 10</p>
+      <Link to={`/update/${game._id}`} className="edit-button">Edit</Link>
+      <button onClick={handleDelete} style={{ color: 'red', marginLeft: '10px' }}>Delete</button>
     </div>
   );
-};
-
-GameCard.propTypes = {
-  title: PropTypes.string.isRequired,
-  genre: PropTypes.string,
-  rating: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  imageUrl: PropTypes.string,
-  description: PropTypes.string,
-  price: PropTypes.string,
-  onReviewClick: PropTypes.func
-};
-
-GameCard.defaultProps = {
-  imageUrl: "https://placehold.co/300x200",
-  onReviewClick: () => console.log("Review button clicked")
 };
 
 export default GameCard;

@@ -1,29 +1,24 @@
-import './App.css'
-import { BrowserRouter as Router, Routes, Route, Link, Navigate } from 'react-router-dom'
-import About from './Pages/About_page'
-import GameCard from './Components/GameCard'
+import './App.css';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import AddGameForm from './Pages/AddGame';
+import About from './Pages/About_page';
+import GameList from './Pages/GameList';
+import UpdateGame from './Pages/Update_page';
 
 function App() {
-  const games = [
-    {
-      title: "Elden Ring",
-      genre: "Action RPG",
-      rating: "9.5",
-      description: "Explore a vast open world filled with danger and discovery.Elden Ring won several Game of the Year awards and has been cited as one of the greatest games of all time",
-      price: "$2"
-    },
-    {
-      title: "Horizon Zero Dawn 2",
-      genre: "Action Adventure",
-      rating: "9.0",
-      description: "Embark on a new journey with Aloy in a breathtaking post-apocalyptic world filled with robotic creatures.",
-      price: "$1.99"
-    }
-  ];
+  const [games, setGames] = useState([]);
 
-  const handleReviewClick = (gameTitle) => {
-    console.log(`Viewing review for ${gameTitle}`);
+  const fetchGames = () => {
+    fetch('http://localhost:3000/api/games')
+      .then(response => response.json())
+      .then(data => setGames(data))
+      .catch(error => console.error('Error fetching games:', error));
   };
+
+  useEffect(() => {
+    fetchGames();
+  }, []);
 
   return (
     <Router>
@@ -31,43 +26,21 @@ function App() {
         <nav className="app-nav">
           <ul>
             <li><Link to="/">Home</Link></li>
-            <li><Link to="/about">About</Link></li>
             <li><Link to="/games">Games</Link></li>
+            <li><Link to="/add-game">Add Game</Link></li>
+            <li><Link to="/about">About</Link></li>
           </ul>
         </nav>
-
         <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/about" element={<About />} />          
-          <Route 
-            path="/games" 
-            element={
-              <div className="games-container">
-                {games.map((game, index) => (
-                  <GameCard 
-                    key={index}
-                    {...game}
-                    onReviewClick={() => handleReviewClick(game.title)}
-                  />
-                ))}
-              </div>
-            } 
-          />
-          
-          <Route path="*" element={<Navigate to="/" />} />
+          <Route path="/" element={<h1>Welcome to the Best Games Project</h1>} />
+          <Route path="/games" element={<GameList games={games} />} />
+          <Route path="/add-game" element={<AddGameForm fetchGames={fetchGames} />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/update/:id" element={<UpdateGame />} />
         </Routes>
       </div>
     </Router>
-  )
-}
-
-function HomePage() {
-  return (
-    <div className="home-page">
-      <h1>Welcome to GameReviews 2024</h1>
-      <p>Use the navigation above to explore my favorite games of 2024.</p>
-    </div>
   );
 }
 
-export default App
+export default App;
