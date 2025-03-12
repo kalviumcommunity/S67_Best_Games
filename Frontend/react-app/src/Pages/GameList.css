@@ -1,0 +1,6 @@
+.game-list{
+    display: flex;
+    flex-direction: row;
+    width: 100vh;
+    justify-content: space-around;
+}

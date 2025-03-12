@@ -4,12 +4,13 @@ import { useState, useEffect } from 'react';
 import AddGameForm from './Pages/AddGame';
 import About from './Pages/About_page';
 import GameList from './Pages/GameList';
+import UpdateGame from './Pages/Update_page';
 
 function App() {
   const [games, setGames] = useState([]);
 
   const fetchGames = () => {
-    fetch('http://localhost:3000/games')
+    fetch('http://localhost:3000/api/games')
       .then(response => response.json())
       .then(data => setGames(data))
       .catch(error => console.error('Error fetching games:', error));
@@ -35,6 +36,7 @@ function App() {
           <Route path="/games" element={<GameList games={games} />} />
           <Route path="/add-game" element={<AddGameForm fetchGames={fetchGames} />} />
           <Route path="/about" element={<About />} />
+          <Route path="/update/:id" element={<UpdateGame />} />
         </Routes>
       </div>
     </Router>
